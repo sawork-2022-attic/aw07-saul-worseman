@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="pos-gateway" />
+        <module name="pos-delivery" />
+      </profile>
+      <profile name="Annotation profile for micropos" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="pos-carts" />
+        <module name="pos-products" />
+        <module name="pos-discovery" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="aw07-saul-worseman" target="11" />
+      <module name="pos-carts" target="11" />
+      <module name="pos-delivery" target="11" />
+      <module name="pos-discovery" target="11" />
+      <module name="pos-gateway" target="1.8" />
+      <module name="pos-products" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="pos-carts" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.suppressGeneratorVersionInfoComment=true -Amapstruct.defaultComponentModel=spring" />
+      <module name="pos-delivery" options="-parameters" />
+      <module name="pos-discovery" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.suppressGeneratorVersionInfoComment=true -Amapstruct.defaultComponentModel=spring" />
+      <module name="pos-gateway" options="-parameters" />
+      <module name="pos-products" options="-parameters -Amapstruct.suppressGeneratorTimestamp=true -Amapstruct.suppressGeneratorVersionInfoComment=true -Amapstruct.defaultComponentModel=spring" />
+    </option>
+  </component>
+</project>
