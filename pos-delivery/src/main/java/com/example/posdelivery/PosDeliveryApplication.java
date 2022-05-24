@@ -1,5 +1,6 @@
 package com.example.posdelivery;
 
+import com.example.posdelivery.model.Cart;
 import com.example.posdelivery.model.Order;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,17 +15,14 @@ import java.util.function.Consumer;
 @EnableEurekaClient
 public class PosDeliveryApplication {
 
-    public static final Logger log = LoggerFactory.getLogger(PosDeliveryApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(PosDeliveryApplication.class, args);
     }
 
-    @Bean
-    public Consumer<Order> checkOrder() {
 
-        return order->{
-            log.info("received!");
-        };
-    }
+
+
+
 
 }

@@ -1,10 +1,13 @@
 package com.micropos.carts.mapper;
 
+import com.micropos.carts.dto.CartDto;
 import com.micropos.carts.dto.ItemDto;
+import com.micropos.carts.model.Cart;
 import com.micropos.carts.model.Item;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +16,34 @@ import org.springframework.stereotype.Component;
 )
 @Component
 public class CartsMapperImpl implements CartsMapper {
+
+    @Override
+    public CartDto toCartDto(Cart cart) {
+        if ( cart == null ) {
+            return null;
+        }
+
+        CartDto cartDto = new CartDto();
+
+        cartDto.setCartId( cart.getCartId() );
+        cartDto.setItems( itemListToItemDtoList( cart.getItems() ) );
+
+        return cartDto;
+    }
+
+    @Override
+    public Cart toCart(CartDto cartDto) {
+        if ( cartDto == null ) {
+            return null;
+        }
+
+        Cart cart = new Cart();
+
+        cart.setCartId( cartDto.getCartId() );
+        cart.setItems( itemDtoListToItemList( cartDto.getItems() ) );
+
+        return cart;
+    }
 
     @Override
     public Collection<ItemDto> toItemsDto(Collection<Item> items) {
@@ -62,18 +93,39 @@ public class CartsMapperImpl implements CartsMapper {
             return null;
         }
 
-        int quantity = 0;
-
-        if ( Item.getQuantity() != null ) {
-            quantity = Item.getQuantity().intValue();
-        }
-
-        String product = null;
-
-        Item item = new Item( product, quantity );
+        Item item = new Item();
 
         item.setProductId( Item.getProductId() );
+        if ( Item.getQuantity() != null ) {
+            item.setQuantity( Item.getQuantity().intValue() );
+        }
 
         return item;
+    }
+
+    protected List<ItemDto> itemListToItemDtoList(List<Item> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<ItemDto> list1 = new ArrayList<ItemDto>( list.size() );
+        for ( Item item : list ) {
+            list1.add( toItemDto( item ) );
+        }
+
+        return list1;
+    }
+
+    protected List<Item> itemDtoListToItemList(List<ItemDto> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<Item> list1 = new ArrayList<Item>( list.size() );
+        for ( ItemDto itemDto : list ) {
+            list1.add( toItem( itemDto ) );
+        }
+
+        return list1;
     }
 }

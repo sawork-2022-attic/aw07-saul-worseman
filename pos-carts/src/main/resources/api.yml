@@ -6,10 +6,10 @@ info:
   license:
     name: MIT
 paths:
-  /cart:
-    get:
-      summary: Get cart
-      operationId: getCart
+  /cart/create:
+    post:
+      summary: create a cart
+      operationId: createCart
       responses:
         '200':
           description: Success
@@ -25,17 +25,49 @@ paths:
                 $ref: '#/components/schemas/Error'
       tags:
         - cart
-  /cart/{productId}:
+
+  /cart/checkout/{cartId}:
+    post:
+      summary: checkout a cart
+      operationId: checkout
+      parameters:
+        - name: cartId
+          in: path
+          required: true
+          description: The id of the cart to retrieve
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /cart/add/{cartId}/{productId}:
     post:
       summary: Add a product to cart
       operationId: addProduct
       parameters:
+        - name: cartId
+          in: path
+          description: Cart Id
+          required: true
+          schema:
+            type : integer
+            format: int64
         - name: productId
           in: path
           description: Product ID
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Success
@@ -60,13 +92,20 @@ components:
         - quantity
       properties:
         productId:
-          type: string
+          type: integer
+          format: int64
         quantity:
           type: number
     Cart:
-      type: array
-      items:
-        $ref: "#/components/schemas/Item"
+      type: object
+      properties:
+        cartId:
+          type: integer
+          format: int64
+        items:
+          type: array
+          items:
+            $ref: "#/components/schema/Item"
     Error:
       type: object
       required:

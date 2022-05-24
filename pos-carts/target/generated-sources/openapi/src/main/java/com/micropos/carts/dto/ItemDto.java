@@ -19,16 +19,16 @@ import javax.annotation.Generated;
  * ItemDto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-22T00:40:39.277412-07:00[America/Los_Angeles]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-23T06:27:44.297465-07:00[America/Los_Angeles]")
 public class ItemDto   {
 
   @JsonProperty("productId")
-  private String productId;
+  private Long productId;
 
   @JsonProperty("quantity")
   private BigDecimal quantity;
 
-  public ItemDto productId(String productId) {
+  public ItemDto productId(Long productId) {
     this.productId = productId;
     return this;
   }
@@ -39,11 +39,11 @@ public class ItemDto   {
   */
   @NotNull 
   @Schema(name = "productId", required = true)
-  public String getProductId() {
+  public Long getProductId() {
     return productId;
   }
 
-  public void setProductId(String productId) {
+  public void setProductId(Long productId) {
     this.productId = productId;
   }
 

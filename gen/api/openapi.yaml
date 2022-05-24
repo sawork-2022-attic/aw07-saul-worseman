@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  description: Order
+  license:
+    name: MIT
+  title: Order
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /delivery/check/{checkId}:
+    get:
+      operationId: listOrderByCartId
+      parameters:
+      - explode: false
+        in: path
+        name: checkId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: The Order
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: unexpected error
+      summary: checkout my order according to my cartId
+      tags:
+      - delivery
+      x-accepts: application/json
+components:
+  schemas:
+    Error:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+      required:
+      - code
+      - message
+      type: object
+    Order:
+      example:
+        orderId: 6
+        totalPrice: 1.4658129805029452
+        cartId: 0
+        status: status
+      properties:
+        cartId:
+          format: int64
+          type: integer
+        orderId:
+          format: int 64
+          type: integer
+        totalPrice:
+          type: number
+        status:
+          type: string
+      type: object
+

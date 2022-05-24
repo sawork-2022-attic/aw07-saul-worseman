@@ -6,10 +6,10 @@ import com.micropos.carts.model.Item;
 import java.util.List;
 
 public interface CartService {
-    public void add(Item item);
+    public void add(Long CartId, Item item);
 
-    public Cart getCart();
+    public Cart getCart(Long CartId);
 
-    public void checkout(List<Item> cart, String userID);
+    public Cart createCart();
 
 }

@@ -9,7 +9,7 @@ public interface ProductService {
 
     public List<Product> products();
 
-    public Product getProduct(String id);
+    public Product getProduct(Long id);
 
     public Product randomProduct();
 }

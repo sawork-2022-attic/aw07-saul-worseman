@@ -1,28 +1,48 @@
 package com.micropos.carts.model;
 
+import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
 @Data
+@Entity
+@Table(name = "items")
 public class Item implements Serializable {
-    private String productId;
+    static long itemNum = 1;
+
+    @Id
+    @Getter
+    @Setter
+    private Long itemId;
+
+    @Getter
+    @Setter
+    private Long productId;
+
+    @Getter
+    @Setter
     private int quantity;
 
-    public Item(String product, int quantity) {
+
+    public Item(Long product, int quantity) {
+        this.itemId = itemNum;
+        itemNum++;
         this.productId = product;
         this.quantity = quantity;
     }
 
+    public Item() {
 
-    public String getProductId() {
+    }
+
+
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -32,5 +52,13 @@ public class Item implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Long itemId) {
+        this.itemId = itemId;
     }
 }

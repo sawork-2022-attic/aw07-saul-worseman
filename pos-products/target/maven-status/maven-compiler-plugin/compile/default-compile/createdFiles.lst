@@ -6,7 +6,6 @@ com/micropos/products/service/ProductServiceImpl.class
 com/micropos/products/model/Product.class
 com/micropos/products/mapper/ProductMapper.class
 com/micropos/products/ProductsApplication.class
-com/micropos/products/repository/JDRepository.class
 com/micropos/products/dto/ProductDto.class
 com/micropos/products/rest/ProductController.class
 com/micropos/products/api/ProductsApi.class

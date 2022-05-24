@@ -18,8 +18,11 @@ import javax.annotation.Generated;
  * ProductDto
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-21T01:12:57.373825-07:00[America/Los_Angeles]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-23T04:34:49.261761-07:00[America/Los_Angeles]")
 public class ProductDto   {
+
+  @JsonProperty("productId")
+  private Long productId;
 
   @JsonProperty("id")
   private String id;
@@ -32,6 +35,25 @@ public class ProductDto   {
 
   @JsonProperty("image")
   private String image;
+
+  public ProductDto productId(Long productId) {
+    this.productId = productId;
+    return this;
+  }
+
+  /**
+   * Get productId
+   * @return productId
+  */
+  
+  @Schema(name = "productId", required = false)
+  public Long getProductId() {
+    return productId;
+  }
+
+  public void setProductId(Long productId) {
+    this.productId = productId;
+  }
 
   public ProductDto id(String id) {
     this.id = id;
@@ -118,7 +140,8 @@ public class ProductDto   {
       return false;
     }
     ProductDto product = (ProductDto) o;
-    return Objects.equals(this.id, product.id) &&
+    return Objects.equals(this.productId, product.productId) &&
+        Objects.equals(this.id, product.id) &&
         Objects.equals(this.name, product.name) &&
         Objects.equals(this.price, product.price) &&
         Objects.equals(this.image, product.image);
@@ -126,13 +149,14 @@ public class ProductDto   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, price, image);
+    return Objects.hash(productId, id, name, price, image);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProductDto {\n");
+    sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    price: ").append(toIndentedString(price)).append("\n");

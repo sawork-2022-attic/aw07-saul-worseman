@@ -5,8 +5,8 @@
  */
 package com.micropos.carts.api;
 
+import com.micropos.carts.dto.CartDto;
 import com.micropos.carts.dto.ErrorDto;
-import com.micropos.carts.dto.ItemDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-22T00:40:39.277412-07:00[America/Los_Angeles]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-23T06:27:44.297465-07:00[America/Los_Angeles]")
 @Validated
 @Tag(name = "cart", description = "the cart API")
 public interface CartApi {
@@ -40,8 +40,9 @@ public interface CartApi {
     }
 
     /**
-     * POST /cart/{productId} : Add a product to cart
+     * POST /cart/add/{cartId}/{productId} : Add a product to cart
      *
+     * @param cartId Cart Id (required)
      * @param productId Product ID (required)
      * @return Success (status code 200)
      *         or Cart not found (status code 404)
@@ -51,22 +52,23 @@ public interface CartApi {
         summary = "Add a product to cart",
         tags = { "cart" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  ItemDto.class))),
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  CartDto.class))),
             @ApiResponse(responseCode = "404", description = "Cart not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  ErrorDto.class)))
         }
     )
     @RequestMapping(
         method = RequestMethod.POST,
-        value = "/cart/{productId}",
+        value = "/cart/add/{cartId}/{productId}",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<ItemDto>> addProduct(
-        @Parameter(name = "productId", description = "Product ID", required = true, schema = @Schema(description = "")) @PathVariable("productId") String productId
+    default ResponseEntity<CartDto> addProduct(
+        @Parameter(name = "cartId", description = "Cart Id", required = true, schema = @Schema(description = "")) @PathVariable("cartId") Long cartId,
+        @Parameter(name = "productId", description = "Product ID", required = true, schema = @Schema(description = "")) @PathVariable("productId") Long productId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"quantity\" : 0.8008281904610115, \"productId\" : \"productId\" }";
+                    String exampleString = "{ \"cartId\" : 0, \"items\" : [ { \"quantity\" : 1.4658129805029452, \"productId\" : 6 }, { \"quantity\" : 1.4658129805029452, \"productId\" : 6 } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -78,32 +80,60 @@ public interface CartApi {
 
 
     /**
-     * GET /cart : Get cart
+     * POST /cart/checkout/{cartId} : checkout a cart
+     *
+     * @param cartId The id of the cart to retrieve (required)
+     * @return Success (status code 200)
+     *         or Cart not found (status code 404)
+     */
+    @Operation(
+        operationId = "checkout",
+        summary = "checkout a cart",
+        responses = {
+            @ApiResponse(responseCode = "200", description = "Success"),
+            @ApiResponse(responseCode = "404", description = "Cart not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  ErrorDto.class)))
+        }
+    )
+    @RequestMapping(
+        method = RequestMethod.POST,
+        value = "/cart/checkout/{cartId}",
+        produces = { "application/json" }
+    )
+    default ResponseEntity<Void> checkout(
+        @Parameter(name = "cartId", description = "The id of the cart to retrieve", required = true, schema = @Schema(description = "")) @PathVariable("cartId") Long cartId
+    ) {
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
+    }
+
+
+    /**
+     * POST /cart/create : create a cart
      *
      * @return Success (status code 200)
      *         or Cart not found (status code 404)
      */
     @Operation(
-        operationId = "getCart",
-        summary = "Get cart",
+        operationId = "createCart",
+        summary = "create a cart",
         tags = { "cart" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  ItemDto.class))),
+            @ApiResponse(responseCode = "200", description = "Success", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  CartDto.class))),
             @ApiResponse(responseCode = "404", description = "Cart not found", content = @Content(mediaType = "application/json", schema = @Schema(implementation =  ErrorDto.class)))
         }
     )
     @RequestMapping(
-        method = RequestMethod.GET,
-        value = "/cart",
+        method = RequestMethod.POST,
+        value = "/cart/create",
         produces = { "application/json" }
     )
-    default ResponseEntity<List<ItemDto>> getCart(
+    default ResponseEntity<CartDto> createCart(
         
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"quantity\" : 0.8008281904610115, \"productId\" : \"productId\" }";
+                    String exampleString = "{ \"cartId\" : 0, \"items\" : [ { \"quantity\" : 1.4658129805029452, \"productId\" : 6 }, { \"quantity\" : 1.4658129805029452, \"productId\" : 6 } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

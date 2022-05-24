@@ -36,7 +36,8 @@ paths:
           required: true
           description: The id of the product to retrieve
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         '200':
           description: Expected response to a valid request
@@ -58,6 +59,9 @@ components:
         - id
         - name
       properties:
+        productId:
+          type: integer
+          format: int64
         id:
           type: string
         name:

@@ -6,6 +6,7 @@ import com.micropos.products.mapper.ProductMapper;
 import com.micropos.products.service.ProductService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,6 @@ public class ProductController implements ProductsApi {
         if (products.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        var t = new ResponseEntity<>(products, HttpStatus.OK);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
@@ -47,7 +47,7 @@ public class ProductController implements ProductsApi {
                     required = true,
                     schema = @Schema(description = "")
             )
-            @PathVariable("productId") String productId) {
+            @PathVariable("productId") Long productId) {
         var dto = productMapper.toProductDto(productService.getProduct(productId));
         if (dto == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

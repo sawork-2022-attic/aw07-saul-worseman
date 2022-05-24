@@ -4,6 +4,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.function.context.FunctionCatalog;
 import org.springframework.cloud.function.context.FunctionRegistry;
 import org.springframework.cloud.stream.binding.BinderAwareChannelResolver;
@@ -17,6 +18,7 @@ import org.springframework.lang.Nullable;
 @Configuration
 public class RabbitMqConfig {
     public static final String topicExchangeName = "pos";
+
     static final String queueName = "order-to-deliver";
 
     @Bean

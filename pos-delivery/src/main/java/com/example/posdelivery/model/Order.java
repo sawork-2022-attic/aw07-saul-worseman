@@ -2,27 +2,49 @@ package com.example.posdelivery.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="orders")
 @Data
 public class Order {
-    private Cart cart;
-    private String orderId;
-    private String deliveryState;
-    private String deliveryID;
+    private Long cartId;
+    @Id
+    @GeneratedValue
+    private Long orderId;
+    private double totalPrice;
+    private String status;
 
-    public Cart getCart() {
-        return cart;
+
+    public Long getCartId() {
+        return cartId;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
     }
 
-    public String getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

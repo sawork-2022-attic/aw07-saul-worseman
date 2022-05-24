@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework.cloud:spring-cloud-stream:3.2.4-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-stream/3.2.4-SNAPSHOT/spring-cloud-stream-3.2.4-20220522.001211-50.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-stream/3.2.4-SNAPSHOT/spring-cloud-stream-3.2.4-20220523.001238-51.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-stream/3.2.4-SNAPSHOT/spring-cloud-stream-3.2.4-20220522.001211-50-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-stream/3.2.4-SNAPSHOT/spring-cloud-stream-3.2.4-20220523.001238-51-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-stream/3.2.4-SNAPSHOT/spring-cloud-stream-3.2.4-20220522.001211-50-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-stream/3.2.4-SNAPSHOT/spring-cloud-stream-3.2.4-20220523.001238-51-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

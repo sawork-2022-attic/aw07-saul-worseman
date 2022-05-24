@@ -47,19 +47,15 @@ public class ProductMapperImpl implements ProductMapper {
             return null;
         }
 
-        String id = null;
-        String name = null;
-        double price = 0.0d;
-        String image = null;
+        Product product = new Product();
 
-        id = productDto.getId();
-        name = productDto.getName();
+        product.setProductId( productDto.getProductId() );
+        product.setId( productDto.getId() );
+        product.setName( productDto.getName() );
         if ( productDto.getPrice() != null ) {
-            price = productDto.getPrice();
+            product.setPrice( productDto.getPrice() );
         }
-        image = productDto.getImage();
-
-        Product product = new Product( id, name, price, image );
+        product.setImage( productDto.getImage() );
 
         return product;
     }
@@ -72,6 +68,7 @@ public class ProductMapperImpl implements ProductMapper {
 
         ProductDto productDto = new ProductDto();
 
+        productDto.setProductId( pet.getProductId() );
         productDto.setId( pet.getId() );
         productDto.setName( pet.getName() );
         productDto.setPrice( pet.getPrice() );

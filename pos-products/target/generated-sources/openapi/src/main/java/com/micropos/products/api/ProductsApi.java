@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Generated;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-21T01:12:57.373825-07:00[America/Los_Angeles]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2022-05-23T04:34:49.261761-07:00[America/Los_Angeles]")
 @Validated
 @Tag(name = "products", description = "the products API")
 public interface ProductsApi {
@@ -65,7 +65,7 @@ public interface ProductsApi {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"image\" : \"image\", \"price\" : \"\", \"name\" : \"name\", \"id\" : \"id\" }";
+                    String exampleString = "{ \"image\" : \"image\", \"productId\" : 0, \"price\" : \"\", \"name\" : \"name\", \"id\" : \"id\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -98,12 +98,12 @@ public interface ProductsApi {
         produces = { "application/json" }
     )
     default ResponseEntity<ProductDto> showProductById(
-        @Parameter(name = "productId", description = "The id of the product to retrieve", required = true, schema = @Schema(description = "")) @PathVariable("productId") String productId
+        @Parameter(name = "productId", description = "The id of the product to retrieve", required = true, schema = @Schema(description = "")) @PathVariable("productId") Long productId
     ) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"image\" : \"image\", \"price\" : \"\", \"name\" : \"name\", \"id\" : \"id\" }";
+                    String exampleString = "{ \"image\" : \"image\", \"productId\" : 0, \"price\" : \"\", \"name\" : \"name\", \"id\" : \"id\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

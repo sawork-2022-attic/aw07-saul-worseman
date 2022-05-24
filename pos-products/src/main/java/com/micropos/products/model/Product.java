@@ -1,8 +1,19 @@
 package com.micropos.products.model;
 
+import lombok.Data;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name="products")
+@Data
 public class Product implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long productId;
+
     private String id;
     private String name;
     private double price;
@@ -13,6 +24,17 @@ public class Product implements Serializable {
         this.name = name;
         this.price = price;
         this.image = image;
+    }
+
+    public Product() {
+
+    }
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long id) {
+        this.productId = id;
     }
 
     public String getId() {
